@@ -5,13 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\css\" />
+    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DTOModels\DTOModels.csproj" />
+    <ProjectReference Include="..\QuestBLL\QuestBLL.csproj" />
+    <ProjectReference Include="..\QuestDAL\QuestDAL.csproj" />
   </ItemGroup>
 
 </Project>
