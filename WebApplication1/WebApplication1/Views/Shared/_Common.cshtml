@@ -3,15 +3,18 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/all.css">
+    <link rel="stylesheet" href="~/css/theme.css" />
 </head>
 <body>
-    <header>
-
-    </header>
-    <aside>
-
-    </aside>
+    <header></header>
+    <aside></aside>
     <main>@RenderBody()</main>
     <footer>@DateTime.Now.Year</footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="~/js/bootstrap.js"></script>
+    <script src="~/js/main.js"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

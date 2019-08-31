@@ -20,5 +20,10 @@ namespace QuestDAL.Interfaces
 
         Task<int> CountAll();
         Task<int> CountWhere(Expression<Func<T, bool>> predicate);
+
+
+        //with include
+        IEnumerable<T> GetWithInclude(params Expression<Func<T, object>>[] includeProperties);
+        IEnumerable<T> GetWithInclude(Func<T, bool> predicate, params Expression<Func<T, object>>[] includeProperties);
     }
 }

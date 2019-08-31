@@ -13,10 +13,12 @@ namespace QuestDAL.Repository
     public class SQLRepository<T> : IRepository<T> where T : BaseModel  
     {
         protected DbContext _context;
+        private DbSet<T> _dbSet;
 
         public SQLRepository(DbContext context)
         {
             _context = context;
+            _dbSet = _context.Set<T>();
         }
 
         public Task<T> GetById(int id)
@@ -59,5 +61,23 @@ namespace QuestDAL.Repository
 
         public async Task<int> CountWhere(Expression<Func<T, bool>> predicate)
             => await _context.Set<T>().CountAsync(predicate);
+
+
+        //with include
+        public IEnumerable<T> GetWithInclude(params Expression<Func<T, object>>[] includeProperties)
+        {
+            return Include(includeProperties).ToList();
+        }
+
+        public IEnumerable<T> GetWithInclude(Func<T, bool> predicate, params Expression<Func<T, object>>[] includeProperties)
+        {
+            var query = Include(includeProperties);
+            return query.Where(predicate).ToList();
+        }
+        private IQueryable<T> Include(params Expression<Func<T, object>>[] includeProperties)
+        {
+            IQueryable<T> query = _dbSet.AsNoTracking();
+            return includeProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+        }
     }
 }
