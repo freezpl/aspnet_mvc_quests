@@ -14,7 +14,7 @@ namespace EntityModels.Model
         [MaxLength(255)]
         public string Path { get; set; }
 
-        public int QuestId { get; set; }
+        //public int QuestId { get; set; }
         public QuestEntity Quest { get; set; }
     }
 }

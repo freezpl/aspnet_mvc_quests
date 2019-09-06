@@ -43,7 +43,7 @@ namespace EntityModels.Model
         public int HardLevel { get; set; }
 
         //Navigation properties
-        public int CompanyId { get; set; }
+       // public int CompanyId { get; set; }
         public CompanyEntity Company { get; set; }
         public List<ImageEntity> Images { get; set; }
     }

@@ -32,6 +32,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Folder Include="Models\" />
     <Folder Include="wwwroot\images\logo\" />
     <Folder Include="wwwroot\images\quests\" />
   </ItemGroup>

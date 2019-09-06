@@ -18,6 +18,7 @@ using QuestBLL.Interfaces;
 using QuestDAL;
 using QuestDAL.Interfaces;
 using QuestDAL.Repository;
+using QuestWebApp.Helpers;
 
 namespace WebApplication1
 {
@@ -71,6 +72,8 @@ namespace WebApplication1
                     name: "default",
                     template: "{controller=Quest}/{action=Quests}/{id?}");
                 });
+
+           SeedData.EnsurePopulated(app);
         }
     }
 }
