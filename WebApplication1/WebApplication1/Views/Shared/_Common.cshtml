@@ -8,29 +8,35 @@
     <link rel="stylesheet" href="~/css/theme.css" />
 </head>
 <body>
-    
+
     <header></header>
     <div class="container">
         <div class="row">
             <aside class="col-sm-4">
-                <form asp-controller="Quests">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Find Quest:</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                @*<div class="filter">
+                    @await Component.InvokeAsync("Filter")
+                </div>*@
+
+                <form name="filterform" data-ajax="true" data-ajax-mode="replace"
+                      data-ajax-update="#res" asp-action="Filter"
+                      asp-controller="Quest" method="post" enctype="multipart/form-data">
+                    @*<button type="submit">Find</button>*@
                 </form>
+
+                <label title="Search"/>
+                <input type="text" oninput="Search()" />
+
+                <div id="res">
+                    asdasdasdasdas
+                </div>
+
             </aside>
             <main class="col-sm-8">@RenderBody()</main>
         </div>
     </div>
-        <footer>@DateTime.Now.Year</footer>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <footer>@DateTime.Now.Year</footer>
+    <script src="~/js/jquery-3.4.1.js"></script>
+    <script src="~/js/unobtrusive-ajax.js"></script>
     <script src="~/js/bootstrap.js"></script>
     <script src="~/js/main.js"></script>
     @RenderSection("Scripts", required: false)

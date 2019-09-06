@@ -22,7 +22,14 @@ namespace QuestWebApp.Controllers
             return View(await _service.GetQuestsAsync());
         }
 
-        async public Task<PartialViewResult> Filter()
+        //[HttpPost]
+        //async public Task<PartialViewResult> Filter(string data)
+        //{
+        //    return PartialView();
+        //}
+
+        [HttpPost]
+        public IActionResult Filter([FromBody]string data)
         {
             return PartialView();
         }
