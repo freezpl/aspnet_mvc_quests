@@ -27,10 +27,10 @@ namespace QuestWebApp.Helpers
                 
                 QuestEntity[] quests = new QuestEntity[]
                 {
-                    new QuestEntity {Name = "Quest1111", Company = companies[0], Address = "Dubno", Email="admin@gamil.com",
+                    new QuestEntity {Name = "Escape from house", Company = companies[0], Address = "Dubno", Email="admin@gamil.com",
                         Description="Very scary", FearLevel=5, HardLevel=5, MaxPlayers=10, MinAge=21, MinPlayers=3, Phone="066-85-26-406",
                     Raiting=8.5, WalkTime=TimeSpan.FromMinutes(180)},
-                    new QuestEntity {Name = "Quest2222", Company = companies[1], Address = "Rivne", Email="admin@ukr.net",
+                    new QuestEntity {Name = "Find predmets in house", Company = companies[1], Address = "Rivne", Email="admin@ukr.net",
                         Description="Find predmets", FearLevel=1, HardLevel=3, MaxPlayers=5, MinAge=14, MinPlayers=1, Phone="095-32-21-109",
                     Raiting=9.2, WalkTime=TimeSpan.FromMinutes(160)},
                 };

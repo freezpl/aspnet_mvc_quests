@@ -57,6 +57,12 @@ namespace QuestDAL.Repository
             return await _context.Set<T>().Where(predicate).ToListAsync();
         }
 
+        public IEnumerable<T> GetWhereWithInclude(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties)
+        {
+            IQueryable<T> query = _dbSet.AsNoTracking().Where(predicate);
+            return includeProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty)).ToList();
+        }
+
         public async Task<int> CountAll() => await _context.Set<T>().CountAsync();
 
         public async Task<int> CountWhere(Expression<Func<T, bool>> predicate)
@@ -69,11 +75,6 @@ namespace QuestDAL.Repository
             return Include(includeProperties).ToList();
         }
 
-        public IEnumerable<T> GetWithInclude(Func<T, bool> predicate, params Expression<Func<T, object>>[] includeProperties)
-        {
-            var query = Include(includeProperties);
-            return query.Where(predicate).ToList();
-        }
         private IQueryable<T> Include(params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> query = _dbSet.AsNoTracking();

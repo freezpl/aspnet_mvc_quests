@@ -11,5 +11,6 @@ namespace QuestBLL.Interfaces
     public interface IService
     {
         Task<List<QuestDTO>> GetQuestsAsync();
+        Task<List<QuestDTO>> SearchQuestsAsync(string text); 
     }
 }

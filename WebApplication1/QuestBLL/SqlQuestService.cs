@@ -34,5 +34,11 @@ namespace QuestBLL
             IEnumerable<QuestEntity> questsEntities = _questRepos.GetWithInclude(q=>q.Company, i=>i.Images); 
             return _mapper.Map<IEnumerable<QuestDTO>>(questsEntities).ToList();
         }
+
+        public async Task<List<QuestDTO>> SearchQuestsAsync(string text)
+        {
+            IEnumerable<QuestEntity> questsEntities = await _questRepos.GetWhere(q=>q.Name.Contains(text));
+            return _mapper.Map<IEnumerable<QuestDTO>>(questsEntities).ToList();
+        }
     }
 }
