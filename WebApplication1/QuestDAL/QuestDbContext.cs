@@ -1,4 +1,6 @@
 ﻿using EntityModels.Model;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +8,7 @@ using System.Text;
 
 namespace QuestDAL
 {
-    public class QuestDbContext : DbContext
+    public class QuestDbContext : IdentityDbContext<UserEntity>
     {
         public QuestDbContext(DbContextOptions<QuestDbContext> options) : base(options)
         {
@@ -16,6 +18,10 @@ namespace QuestDAL
         public DbSet<QuestEntity> Quests { get; set; }
         public DbSet<CompanyEntity> Companies { get; set; }
         public DbSet<ImageEntity> Images { get; set; }
+
+
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -45,7 +51,7 @@ namespace QuestDAL
             //        new ImageEntity{Id = 3, Name = "Img3", Path="3.jpg", QuestId = 2},
             //        new ImageEntity{Id = 4, Name = "Img4", Path="4.jpg", QuestId = 2},
             //    });
-            //base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
         }
 
     }

@@ -10,6 +10,7 @@ using EntityModels.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,6 +40,11 @@ namespace WebApplication1
 
             services.AddDbContext<QuestDbContext>(options => options.UseSqlServer(connection));
 
+            services.AddIdentity<UserEntity, IdentityRole>()
+                    .AddEntityFrameworkStores<QuestDbContext>().AddDefaultTokenProviders();
+
+            services.ConfigureApplicationCookie(options => options.LoginPath = "/Quest");
+
             services.AddMvc();
 
             ///autofac
@@ -64,10 +70,14 @@ namespace WebApplication1
             }
             app.UseStatusCodePages();
             app.UseStaticFiles();
+            app.UseAuthentication();
 
             app.UseMvc(
                 routes =>
                 {
+                    routes.MapAreaRoute("admin", "Admin", 
+                        "admin/{controller=Home}/{action=Index}/{id?}");
+
                     routes.MapRoute(
                     name: "default",
                     template: "{controller=Quest}/{action=Quests}/{id?}");
