@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/all.css">
+    <link rel="stylesheet" href="~/css/theme.css" />
+</head>
+<body>
+
+    <header></header>
+    <div class="container">
+        <div class="row">
+            <aside class="col-sm-4">
+                @*<div class="filter">
+                    @await Component.InvokeAsync("Filter")
+                </div>*@
+
+                <form name="filterform" data-ajax="true" data-ajax-mode="replace"
+                      data-ajax-update="#res" asp-action="Filter"
+                      asp-controller="Quest" method="post" enctype="multipart/form-data">
+                    @*<button type="submit">Find</button>*@
+                </form>
+
+                <label title="Search"/>
+                <input type="text" oninput="Search(event)" />
+                <div id="res">
+                </div>
+
+            </aside>
+            <main class="col-sm-8">
+            <div>Admin panel</div>
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+    <footer>@DateTime.Now.Year</footer>
+    <script src="~/js/jquery-3.4.1.js"></script>
+    <script src="~/js/unobtrusive-ajax.js"></script>
+    <script src="~/js/bootstrap.js"></script>
+    <script src="~/js/main.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
