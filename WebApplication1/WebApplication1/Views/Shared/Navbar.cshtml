@@ -1,0 +1,34 @@
+﻿<div class="navbar-container">
+    <div class="container">
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+            <a class="navbar-brand" asp-action="Quests" asp-controller="Quest">
+                <img src="~/images/logo/logo.png" class="d-inline-block align-top" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a asp-action="Quests" asp-controller="Quest" class="nav-item nav-link @(ViewContext.RouteData.Values["Action"].ToString() == "Quests" ? "active" : "")"> Quests </a>  
+                </div>
+            </div>
+            <div class="auth-fields">
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <p><a asp-action="Login" asp-controller="Auth">Login</a></p>
+                    <p><a asp-action="Register" asp-controller="Auth">Register</a></p>
+                }
+                else
+                {
+                    <p><a>Hi </a></p>
+                    <p><a>Logout</a></p>
+                }
+            </div>
+            <div class="search-field">
+                <input type="text" oninput="Search(event)" class="form-control" />
+                <div id="res">
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>

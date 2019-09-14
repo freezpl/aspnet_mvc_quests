@@ -4,3 +4,44 @@
 .quest-block{
     padding: 5px;
 }
+
+.navbar-brand img{
+    width: 100px;
+}
+
+.search-field {
+    position: relative;
+}
+    .search-field #res {
+        position: absolute;
+        width: 100%;
+        z-index:1;
+    }
+        .search-field #res ul {
+        background: #ececec;
+        padding: 10px;
+        border-radius: 0 0 5px 5px;
+        list-style: none;
+        color: #580008;
+    }
+
+    .search-field #res ul li{
+        border-bottom: 1px solid #606060;
+        cursor: pointer;
+    }
+
+.navbar-container {
+    background: #343a40;
+}
+
+.auth-fields {
+    color: #c1c1c1;
+    text-align: right;
+    padding-right: 10px;
+    font-size: 13px;
+}
+
+.auth-fields p{
+    margin: 0;
+    cursor: pointer;
+}

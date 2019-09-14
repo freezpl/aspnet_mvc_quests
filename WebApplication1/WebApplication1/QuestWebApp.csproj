@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\lib\**" />
+    <Content Remove="wwwroot\lib\**" />
+    <EmbeddedResource Remove="wwwroot\lib\**" />
+    <None Remove="wwwroot\lib\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
     <PackageReference Include="Autofac.Mvc5" Version="4.0.2" />
     <PackageReference Include="AutoMapper" Version="9.0.0" />
@@ -36,7 +43,6 @@
   <ItemGroup>
     <Folder Include="wwwroot\images\logo\" />
     <Folder Include="wwwroot\images\quests\" />
-    <Folder Include="wwwroot\lib\" />
   </ItemGroup>
   
   <ItemGroup>

@@ -41,7 +41,9 @@ namespace WebApplication1
             services.AddDbContext<QuestDbContext>(options => options.UseSqlServer(connection));
 
             services.AddIdentity<UserEntity, IdentityRole>()
-                    .AddEntityFrameworkStores<QuestDbContext>().AddDefaultTokenProviders();
+                    .AddEntityFrameworkStores<QuestDbContext>()
+                    .AddUserManager<AppUserManager>()
+                    .AddDefaultTokenProviders();
 
             services.ConfigureApplicationCookie(options => options.LoginPath = "/Quest");
 

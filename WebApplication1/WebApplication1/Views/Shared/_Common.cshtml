@@ -9,27 +9,22 @@
 </head>
 <body>
 
-    <header></header>
+    <header>
+        @Html.Partial("Navbar")
+    </header>
     <div class="container">
         <div class="row">
-            <aside class="col-sm-4">
+            <aside class="col-sm-3">
                 @*<div class="filter">
                     @await Component.InvokeAsync("Filter")
-                </div>*@
-
+                </div>
                 <form name="filterform" data-ajax="true" data-ajax-mode="replace"
                       data-ajax-update="#res" asp-action="Filter"
                       asp-controller="Quest" method="post" enctype="multipart/form-data">
-                    @*<button type="submit">Find</button>*@
-                </form>
-
-                <label title="Search"/>
-                <input type="text" oninput="Search(event)" />
-                <div id="res">
-                </div>
-
+                    <button type="submit">Find</button>
+                </form>*@
             </aside>
-            <main class="col-sm-8">@RenderBody()</main>
+            <main class="col-sm-9">@RenderBody()</main>
         </div>
     </div>
     <footer>@DateTime.Now.Year</footer>
