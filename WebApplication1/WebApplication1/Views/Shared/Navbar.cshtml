@@ -15,13 +15,13 @@
             <div class="auth-fields">
                 @if (!User.Identity.IsAuthenticated)
                 {
-                    <p><a asp-action="Login" asp-controller="Auth">Login</a></p>
+                    <p><a asp-action="Login" asp-controller="Auth" asp-route-url="@Context.Request.Path">Login</a></p>
                     <p><a asp-action="Register" asp-controller="Auth">Register</a></p>
                 }
                 else
                 {
-                    <p><a>Hi </a></p>
-                    <p><a>Logout</a></p>
+                    <p>Hi @User.Identity.Name</p>
+                    <p><a asp-action="Logout" asp-controller="Auth" asp-route-rturnurl="@Context.Request.Path">Logout</a></p>
                 }
             </div>
             <div class="search-field">

@@ -22,19 +22,6 @@ namespace QuestWebApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Login(LoginViewModel model)
-        {
-
-            return View();
-        }
-
-        [HttpGet]
         public IActionResult Register()
         {
             return View();
@@ -43,10 +30,13 @@ namespace QuestWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-           var result = await _userManager.CreateAsync(new UserEntity { Email = model.Email, Name = model.Name, Years = model.Year, UserName = model.Email }, model.Password);
+            var result = await _userManager.CreateAsync(new UserEntity { Email = model.Email, Name = model.Name, Years = model.Year, UserName = model.Email }, model.Password);
 
             if (result.Succeeded)
             {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user != null)
+                    await _signInManager.SignInAsync(user, false);
                 return RedirectToAction("Quests", "Quest");
             }
 
@@ -57,5 +47,45 @@ namespace QuestWebApp.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public IActionResult Login(string url)
+        {
+            ViewBag.ReturnUrl = url;
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model, string ReturnUrl)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            await _signInManager.SignOutAsync();
+            var result = await _signInManager.PasswordSignInAsync(model.Login, model.Password, model.RememberMe, false);
+
+            if (result.Succeeded)
+            {
+                if (String.IsNullOrEmpty(ReturnUrl))
+                    return RedirectToAction("Index", "Games");
+                return Redirect(ReturnUrl);
+            }
+
+            ModelState.AddModelError("", "Wrong login or password");
+            return View();
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Logout(string ReturnUrl)
+        {
+            await _signInManager.SignOutAsync();
+            if (String.IsNullOrEmpty(ReturnUrl))
+                return RedirectToAction("Quests", "Quest");
+            return Redirect(ReturnUrl);
+        }
+
     }
 }

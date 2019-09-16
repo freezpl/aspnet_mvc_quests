@@ -45,3 +45,7 @@
     margin: 0;
     cursor: pointer;
 }
+
+input[type='checkbox'] {
+    max-height: 20px;
+}
